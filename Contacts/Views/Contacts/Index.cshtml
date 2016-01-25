@@ -1,0 +1,97 @@
+﻿@model IEnumerable<Contacts.Models.Contact>
+
+@{
+    ViewBag.Title = "List of contacts";
+}
+
+<script>
+$(document).ready( function () {
+    $('#ContactList').DataTable();
+} );
+</script>
+
+
+<h2>List of contacts</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="ContactList" class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor( model => model.Title )
+            </th>
+            <th>
+                @Html.DisplayNameFor( model => model.Name )
+            </th>
+            <th>
+                @Html.DisplayNameFor( model => model.Surname )
+            </th>
+            <th>
+                @Html.DisplayNameFor( model => model.Email )
+            </th>
+            <th>
+                @Html.DisplayNameFor( model => model.Phone )
+            </th>
+            <th>
+                @Html.DisplayNameFor( model => model.Mobile )
+            </th>
+            <th>
+                @Html.DisplayNameFor( model => model.CompanyName )
+            </th>
+            <th>
+                @Html.DisplayNameFor( model => model.Position )
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor( modelItem => item.Title )
+        </td>
+        <td>
+            @Html.DisplayFor( modelItem => item.Name )
+        </td>
+        <td>
+            @Html.DisplayFor( modelItem => item.Surname )
+        </td>
+        <td>
+            @Html.DisplayFor( modelItem => item.Email )
+        </td>
+        <td>
+            @Html.DisplayFor( modelItem => item.Phone )
+        </td>
+        <td>
+            @Html.DisplayFor( modelItem => item.Mobile )
+        </td>
+        <td>
+            @Html.DisplayFor( modelItem => item.CompanyName )
+        </td>
+        <td>
+            @Html.DisplayFor( modelItem => item.Position )
+        </td>
+        <td>
+            <a href="@Url.Action("Archive/" +item.ContactId, "Contacts")" class="btn btn-info btn-sm">
+                Archive
+                <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+            </a>
+            <a href="@Url.Action("Edit/"+ item.ContactId, "Contacts")" class="btn btn-default btn-sm">
+                Edit
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+            </a>
+            <a href="@Url.Action("Delete/" +item.ContactId, "Contacts")" class="btn btn-danger btn-sm">
+                Delete
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            </a>
+        </td>
+    </tr>
+    }
+    </tbody>
+</table>
+
+
+
